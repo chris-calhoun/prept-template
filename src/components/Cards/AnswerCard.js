@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 export default function AnswerCard({ card, showNextQuestion }) {
   return (
     <>
-<div className='d-flex flex-column justify-content-center m-3 w-25'>
+<div className='d-flex flex-column justify-content-center m-3 w-100'>
     <h1>Answer:</h1>
     <div className='card'>
       <div className='card-body'>
