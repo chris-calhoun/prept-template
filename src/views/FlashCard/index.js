@@ -1,8 +1,9 @@
 import React from 'react';
 import QuestionCard from '../../components/Cards/QuestionCard';
 import AnswerCard from '../../components/Cards/AnswerCard';
-import questionData from '../../helpers/data/questionData';
+import FlashCardData from '../../helpers/data/flashCard';
 import AppModal from '../../components/Modal/AppModal';
+import FlashCardForm from '../../components/Forms/FlashCardForm';
 
 export default class FlashCard extends React.Component {
   state = {
@@ -17,7 +18,7 @@ export default class FlashCard extends React.Component {
 
   loadData = () => {
     if (!this.state.answer) {
-      questionData.getQuestions().then((response) => {
+      FlashCardData.getFlashCards().then((response) => {
         this.setState({
           flashCards: response,
           currentCard: response[0],
@@ -31,6 +32,14 @@ export default class FlashCard extends React.Component {
         currentCard: flashCards[nextQuestion] || flashCards[0],
       });
     }
+  }
+
+  getCards = () => {
+    FlashCardData.getFlashCards().then((response) => {
+      this.setState({
+        flashCards: response,
+      });
+    });
   }
 
   showAnswerToQuestion = (e) => {
@@ -48,7 +57,7 @@ export default class FlashCard extends React.Component {
         <>
         <div className="d-flex justify-content-center">
         <AppModal title={'Create Flash Card'} buttonLabel={'Create Flash Card'}>
-          {/* <FlashCardForm /> */}
+          <FlashCardForm onCreate={this.getCards} />
         </AppModal>
           </div>
         <div className="flash-card d-flex flex-wrap justify-content-center">
