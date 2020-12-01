@@ -2,6 +2,7 @@ import React from 'react';
 import QuestionCard from '../../components/Cards/QuestionCard';
 import AnswerCard from '../../components/Cards/AnswerCard';
 import questionData from '../../helpers/data/questionData';
+import AppModal from '../../components/Modal/AppModal';
 
 export default class FlashCard extends React.Component {
   state = {
@@ -45,7 +46,13 @@ export default class FlashCard extends React.Component {
     const showAnswer = () => <AnswerCard key={currentCard.firebaeKey} card={currentCard} showNextQuestion={this.loadData}/>;
     return (
         <>
+        <div className="d-flex justify-content-center">
+        <AppModal title={'Create Flash Card'} buttonLabel={'Create Flash Card'}>
+          {/* <FlashCardForm /> */}
+        </AppModal>
+          </div>
         <div className="flash-card d-flex flex-wrap justify-content-center">
+
         {answer === false ? showQuestion() : showAnswer()}
       </div>
         </>
